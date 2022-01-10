@@ -7,11 +7,16 @@ import {TaskType} from "./App";
 //     title: string,
 //     isDone: boolean
 // }
-const Task: React.FC<TaskType> = ({id, title, isDone}) => {
+type TaskPropsType = TaskType & {
+    removeTask: (taskID: number) => void
+}
+
+const Task: React.FC<TaskPropsType> = ({id, title, isDone, removeTask}) => {
     return (
         <li key={id}>
             <input type="checkbox" checked={isDone}/>
             <span>{title}</span>
+            <button onClick={() => removeTask(id)}>x</button>
         </li>
     )
 }
